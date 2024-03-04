@@ -11,7 +11,7 @@ public abstract class Grid extends Model {
 
     private List<List<Cell>> cells = new ArrayList<>();
 
-    public abstract Cell makeCell();
+    public abstract Cell makeCell(int row, int col);
 
     public void observe(){
         for (List<Cell> list :cells){
@@ -33,6 +33,23 @@ public abstract class Grid extends Model {
         for (List<Cell> list :cells){
             for (Cell c :list){
                 c.update();
+            }
+        }
+    }
+
+    public void updateLoop(int cycles){
+        for (int i = 0; i < cycles; i++){
+            observe();
+            interact();
+            update();
+        }
+        notifySubscribers();
+    }
+
+    public void repopulate(boolean random){
+        for (List<Cell> list :cells){
+            for (Cell c :list){
+                c.reset(random);
             }
         }
     }
