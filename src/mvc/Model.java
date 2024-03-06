@@ -9,4 +9,8 @@ public abstract class Model extends Publisher implements Serializable {
     public void changed(){
         unsavedChanges = true;
     }
+    public String getFileName() {return fileName;}
+    public void setFileName(String s) {fileName = s;}
+    public boolean getUnsavedChanges() {return unsavedChanges;}
+    public void setUnsavedChanges(boolean b) {unsavedChanges = b;}
 }

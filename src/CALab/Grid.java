@@ -2,69 +2,79 @@ package CALab;
 
 import mvc.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.*;
+import java.io.*;
+import java.util.*;
 
 public abstract class Grid extends Model {
-    private static int time = 0;
-    private int dim = 20;
-
+    static private int time = 0;
+    protected int dim = 20;
     protected Cell[][] cells;
 
-    public abstract Cell makeCell();
+    public int getDim() { return dim; }
+    public int getTime() { return time; }
+    public Cell getCell(int row, int col) { return cells[row][col]; }
+    public abstract Cell makeCell(boolean uniform);
 
-    public Grid(int dim){
+
+    public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
         populate();
     }
+    public Grid() { this(20); }
 
-    public Grid(){
-        this(20);
+    protected void populate() {
+        // 1. use makeCell to fill in cells
+        // 2. use getNeighbors to set the neighbors field of each cell
     }
 
-    protected void populate(){
-
-    }
-    public void observe(){
-        for (Cell[] list :cells){
-            for (Cell c :list){
-                c.observe();
-            }
+    // called when Populate button is clicked
+    public void repopulate(boolean randomly) {
+        if (randomly) {
+            // randomly set the status of each cell
+        } else {
+            // set the status of each cell to 0 (dead)
         }
+        // notify subscribers
     }
 
-    public void interact(){
-        for (Cell[] list :cells){
-            for (Cell c :list){
-                c.interact();
-            }
-        }
+
+    public Set<Cell> getNeighbors(Cell asker, int radius) {
+        /*
+        return the set of all cells that can be reached from the asker in radius steps.
+        If radius = 1 this is just the 8 cells touching the asker.
+        Tricky part: cells in row/col 0 or dim - 1.
+        The asker is not a neighbor of itself.
+        */
     }
 
-    public void update(){
-        for (Cell[] list :cells){
-            for (Cell c :list){
-                c.update();
-            }
-        }
+    // overide these
+    public int getStatus() { return 0; }
+    public Color getColor() { return Color.GREEN; }
+
+    // cell phases:
+
+    public void observe() {
+        // call each cell's observe method and notify subscribers
     }
 
-    public void updateLoop(int cycles){
-        for (int i = 0; i < cycles; i++){
-            observe();
+    public void interact() {
+        // ???
+    }
+
+    public void update() {
+        // ???
+    }
+
+    public void updateLoop(int cycles) {
+        observe();
+        for(int cycle = 0; cycle < cycles; cycle++) {
             interact();
             update();
+            observe();
             time++;
-        }
-        notifySubscribers();
-    }
-
-    public void repopulate(boolean random){
-        for (Cell[] list :cells){
-            for (Cell c :list){
-                c.reset(random);
-            }
+            System.out.println("time = " + time);
         }
     }
 }
