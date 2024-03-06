@@ -6,15 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Grid extends Model {
-    private int time = 0;
+    private static int time = 0;
     private int dim = 20;
 
-    private List<List<Cell>> cells = new ArrayList<>();
+    protected Cell[][] cells;
 
-    public abstract Cell makeCell(int row, int col);
+    public abstract Cell makeCell();
 
+    public Grid(int dim){
+        this.dim = dim;
+        cells = new Cell[dim][dim];
+        populate();
+    }
+
+    public Grid(){
+        this(20);
+    }
+
+    protected void populate(){
+
+    }
     public void observe(){
-        for (List<Cell> list :cells){
+        for (Cell[] list :cells){
             for (Cell c :list){
                 c.observe();
             }
@@ -22,7 +35,7 @@ public abstract class Grid extends Model {
     }
 
     public void interact(){
-        for (List<Cell> list :cells){
+        for (Cell[] list :cells){
             for (Cell c :list){
                 c.interact();
             }
@@ -30,7 +43,7 @@ public abstract class Grid extends Model {
     }
 
     public void update(){
-        for (List<Cell> list :cells){
+        for (Cell[] list :cells){
             for (Cell c :list){
                 c.update();
             }
@@ -42,12 +55,13 @@ public abstract class Grid extends Model {
             observe();
             interact();
             update();
+            time++;
         }
         notifySubscribers();
     }
 
     public void repopulate(boolean random){
-        for (List<Cell> list :cells){
+        for (Cell[] list :cells){
             for (Cell c :list){
                 c.reset(random);
             }
