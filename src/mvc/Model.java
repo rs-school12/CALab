@@ -8,6 +8,7 @@ public class Model extends Publisher implements Serializable {
 
     public void changed(){
         unsavedChanges = true;
+        notifySubscribers();
     }
     public String getFileName() {return fileName;}
     public void setFileName(String s) {fileName = s;}

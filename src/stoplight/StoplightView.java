@@ -18,4 +18,5 @@ public class StoplightView extends View {
         shape.draw((Graphics2D) gc);
         gc.setColor(oldColor);
     }
+
 }

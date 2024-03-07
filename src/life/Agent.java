@@ -22,4 +22,14 @@ public class Agent extends Cell {
     public void reset(boolean random) {
         
     }
+
+    @Override
+    public void nextState() {
+
+    }
+
+    @Override
+    public int getStatus() {
+        return 0;
+    }
 }

@@ -7,24 +7,30 @@ import java.awt.event.ActionListener;
 
 public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
-
-    JFrame frame;
-    public ControlPanel controlPanel;
-    View view;
+    protected AppFactory factory;
+    public JFrame frame;
+    public Model model;
+    public View view;
+    public mvc.ControlPanel controlPanel;
 
     public AppPanel(AppFactory factory) {      // creates generic mvc app panel layout
+        this.factory = factory;
+        model = factory.makeModel();
+        view = factory.makeView(model);
+        controlPanel = factory.makeControlPanel(model);
+
+        this.add(controlPanel);
+        this.add(view);
+
+        this.setLayout(new GridLayout(1,2));
+
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cp = frame.getContentPane();
         cp.add(this);
-        frame.setTitle("Blank App");
+        frame.setTitle("App Panel");
         frame.setSize(500, 300);
 
-        Model model = new Model();
-        View view = new View(model);
-        controlPanel = new ControlPanel(model, frame);
-        this.add(controlPanel);
-        this.add(view);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(makeFileMenu());

@@ -1,9 +1,6 @@
 package stoplight;
 
-import mvc.AppFactory;
-import mvc.Command;
-import mvc.Model;
-import mvc.View;
+import mvc.*;
 
 public class StoplightFactory implements AppFactory {
 
@@ -13,10 +10,15 @@ public class StoplightFactory implements AppFactory {
         return new StoplightView((Stoplight)m);
     }
 
+    @Override
+    public ControlPanel makeControlPanel(Model m) {
+        return new ControlPanel();
+    }
+
     public String[] getEditCommands() { return new String[] {"Change"}; }
 
     // source added 3/15 to support text fields
-    public Command makeEditCommand(Model model, String type) {
+    public Command makeEditCommand(Model model, String type, Object source) {
         if (type.equals("Change"))
             return new ChangeCommand(model);
         return null;
