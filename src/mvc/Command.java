@@ -1,6 +1,12 @@
 package mvc;
 
-public interface Command {
+public abstract class Command {
 
-    public void execute();
+    protected Model model;
+
+    public Command(Model model) {
+        this.model = model;
+    }
+
+    public abstract void execute();
 }

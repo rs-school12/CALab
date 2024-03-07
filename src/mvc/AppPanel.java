@@ -1,21 +1,30 @@
 package mvc;
 
-import stoplight.StoplightFactory;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AppPanel implements Subscriber, ActionListener {
+public class AppPanel extends JPanel implements Subscriber, ActionListener {
+
 
     JFrame frame;
-    ControlPanel controlPanel;
+    public ControlPanel controlPanel;
+    View view;
+
     public AppPanel(AppFactory factory) {      // creates generic mvc app panel layout
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp = frame.getContentPane();
+        cp.add(this);
         frame.setTitle("Blank App");
         frame.setSize(500, 300);
+
+        Model model = new Model();
+        View view = new View(model);
+        controlPanel = new ControlPanel(model, frame);
+        this.add(controlPanel);
+        this.add(view);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(makeFileMenu());
@@ -89,16 +98,23 @@ public class AppPanel implements Subscriber, ActionListener {
     public void display() {
     }
 
-    public class ControlPanel {
-        public ControlPanel() {
+    public class ControlPanel extends JPanel implements ActionListener {
+        JFrame frame;
+        Model model;
+        public ControlPanel(Model model, JFrame frame) {
+            this.frame = frame;
+            this.model = model;
+            JPanel p = new JPanel();
+            add(p);
+        }
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
         }
     }
 
-    public static void main(String[] args) {
-        AppFactory factory = new StoplightFactory();
-        AppPanel app = new AppPanel(factory);
 
-    }
 
 }

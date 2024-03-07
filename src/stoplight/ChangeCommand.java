@@ -3,7 +3,7 @@ package stoplight;
 import mvc.Command;
 import mvc.Model;
 
-public class ChangeCommand implements Command {
+public class ChangeCommand extends Command {
 
     public ChangeCommand(Model model) {
         super(model);
