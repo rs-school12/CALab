@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static mvc.Utilities.makeMenu;
+
 public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
     protected AppFactory factory;
@@ -33,63 +35,12 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
 
         JMenuBar menuBar = new JMenuBar();
-        menuBar.add(makeFileMenu());
-        menuBar.add(makeHelpMenu());
-        menuBar.add(makeEditMenu());
+        menuBar.add(Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this));
+        menuBar.add(Utilities.makeMenu("Edit", factory.getEditCommands(), this));
+        menuBar.add(Utilities.makeMenu("Help", new String[]{"About", "Help"}, this));
         frame.setJMenuBar(menuBar);
 
         frame.setVisible(true);
-    }
-
-    private JMenu makeFileMenu() {
-        JMenu result = new JMenu("File");
-        result.setMnemonic('f');
-
-        JMenuItem item = new JMenuItem("New", 'n');
-        item.addActionListener(this);
-        result.add(item);
-
-        item = new JMenuItem("Open", 'o');
-        item.addActionListener(this);
-        result.add(item);
-
-        item = new JMenuItem("Save", 's');
-        item.addActionListener(this);
-        result.add(item);
-
-        item = new JMenuItem("Save As", 'a');
-        item.addActionListener(this);
-        result.add(item);
-
-        item = new JMenuItem("Quit", 'q');
-        item.addActionListener(this);
-        result.add(item);
-
-        return result;
-    }
-
-    private JMenu makeHelpMenu() {
-        JMenu result = new JMenu("Help");
-        result.setMnemonic('h');
-
-        JMenuItem item = new JMenuItem("About", 'b');
-        item.addActionListener(this);
-        result.add(item);
-
-        item = new JMenuItem("Help", 'b');
-        item.addActionListener(this);
-        result.add(item);
-
-        return result;
-    }
-
-    private JMenu makeEditMenu() {
-        JMenu result = new JMenu("Edit");
-        result.setMnemonic('e');
-
-        // edit menu should be abstract and pull from AppFactory for a list of EditCommands
-
-        return result;
     }
 
     public void actionPerformed(ActionEvent e) {
