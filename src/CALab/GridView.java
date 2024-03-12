@@ -6,7 +6,7 @@ import mvc.View;
 import javax.swing.*;
 import java.awt.*;
 
-public class GridView  extends View {
+public class GridView extends View {
 
     private CellView cellViews[][];
 
