@@ -15,5 +15,6 @@ public class ClearCommand extends Command {
     public void execute() {
         /*Grid grid = (Grid) model;
         reset cells;*/
+        ((Grid) model).repopulate(false);
     }
 }

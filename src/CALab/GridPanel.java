@@ -42,8 +42,11 @@ public class GridPanel extends AppPanel {
         String cmd = e.getActionCommand();
         try {
             switch (cmd){
-                case "Change":
-                    factory.makeEditCommand(model,"Change",this).execute();
+                case "Run1":
+                case "Run50":
+                case "Populate":
+                case "Clear":
+                    factory.makeEditCommand(model,cmd,this).execute();
                     break;
             }
         } catch (Exception ex) {

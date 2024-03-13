@@ -18,5 +18,10 @@ public class RunCommand extends Command {
         //else ...
         /*Grid grid = (Grid) model;
         grid.execute();*/
+        if (type == "Run50"){
+            ((Grid) model).updateLoop(50);
+        }else{
+            ((Grid) model).updateLoop(1);
+        }
     }
 }

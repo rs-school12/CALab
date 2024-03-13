@@ -10,13 +10,20 @@ public class Agent extends Cell {
 
     private int status;
 
-    public Agent(Grid g) {
+    private int ambience;
+
+    public Agent(Society g) {
         super(g);
     }
 
     @Override
     public void observe() {
-
+        ambience = 0;
+        for (Cell c:neighbors){
+            if (c.getStatus() == 0){
+                ambience++;
+            }
+        }
     }
 
     @Override
@@ -26,7 +33,11 @@ public class Agent extends Cell {
 
     @Override
     public void update() {
-
+        if (Society.death.contains(ambience) && this.getStatus()==0){
+            this.nextState();
+        }else if (Society.rebirth.contains(ambience) && this.getStatus()==1){
+            this.nextState();
+        }
     }
 
     @Override

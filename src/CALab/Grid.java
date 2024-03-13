@@ -30,7 +30,33 @@ public abstract class Grid extends Model {
                 cells[i][j] = makeCell();
             }
         }
+
+        for (int i = 0; i < dim; i++){
+            for (int j = 0; j < dim; j++){
+                for (int x = i - 1; x <= i + 1; x++) {
+                    for (int y = j - 1; y <= j + 1; y++) {
+                        if (i == x && j == y)
+                            continue;
+
+                        int X = x;
+                        int Y = y;
+                        if (x < 0){
+                            X = dim - 1;
+                        }else if (x >= dim){
+                            X = 0;
+                        }
+                        if (y < 0){
+                            Y = dim - 1;
+                        }else if (y >= dim){
+                            Y = 0;
+                        }
+                        cells[i][j].neighbors.add(cells[X][Y]);
+                    }
+                }
+            }
+        }
     }
+
     public void observe(){
         for (Cell[] list :cells){
             for (Cell c :list){
