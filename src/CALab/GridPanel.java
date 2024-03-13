@@ -13,7 +13,7 @@ public class GridPanel extends AppPanel {
     private JButton run50;
     private JButton populate;
     private JButton clear;
-    public GridPanel(AppFactory gridfactory) {
+    public GridPanel(GridFactory gridfactory) {
         super(gridfactory);
         controlPanel.setLayout(new GridLayout(2,2));
 
@@ -49,11 +49,5 @@ public class GridPanel extends AppPanel {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
-    }
-
-    public static void main(String[] args) {
-        AppFactory factory = new GridFactory();
-        AppPanel panel = new GridPanel(factory);
-        panel.display();
     }
 }

@@ -18,6 +18,10 @@ public abstract class Cell extends Publisher implements Serializable {
 
     protected Cell partner = null;
 
+    public Cell(Grid g){
+        myGrid = g;
+    }
+
     public abstract void observe();
     public abstract void interact();
     public abstract void update();
@@ -55,7 +59,7 @@ public abstract class Cell extends Publisher implements Serializable {
     }
 
     public Color getColor(){
-        return null;
+        return Color.green;
     }
 
     public abstract void nextState();

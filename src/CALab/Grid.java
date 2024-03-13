@@ -17,6 +17,7 @@ public abstract class Grid extends Model {
         this.dim = dim;
         cells = new Cell[dim][dim];
         populate();
+        repopulate(true);
     }
 
     public Grid(){
@@ -24,7 +25,11 @@ public abstract class Grid extends Model {
     }
 
     protected void populate(){
-
+        for (int i = 0; i < dim; i++){
+            for (int j = 0; j < dim; j++){
+                cells[i][j] = makeCell();
+            }
+        }
     }
     public void observe(){
         for (Cell[] list :cells){
@@ -66,5 +71,9 @@ public abstract class Grid extends Model {
                 c.reset(random);
             }
         }
+    }
+
+    public int getDim(){
+        return dim;
     }
 }

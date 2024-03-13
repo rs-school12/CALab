@@ -7,13 +7,8 @@ public class GridFactory implements AppFactory {
     //public Model makeModel() { return new Grid(); } //different per implementation
 
     @Override
-    public Model makeModel() {
-        return new Grid() {
-            @Override
-            public Cell makeCell() {
-                return null;
-            }
-        };
+    public Grid makeModel() {
+        return null;
     }
 
     public View makeView(Model m) {
