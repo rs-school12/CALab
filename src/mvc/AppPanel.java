@@ -13,13 +13,13 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     public JFrame frame;
     public Model model;
     public View view;
-    public mvc.ControlPanel controlPanel;
+    public JPanel controlPanel;
 
     public AppPanel(AppFactory factory) {      // creates generic mvc app panel layout
         this.factory = factory;
         model = factory.makeModel();
         view = factory.makeView(model);
-        controlPanel = factory.makeControlPanel(model);
+        controlPanel = new JPanel();
 
         this.add(controlPanel);
         this.add(view);

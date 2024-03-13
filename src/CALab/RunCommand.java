@@ -5,7 +5,7 @@ import mvc.Model;
 
 public class RunCommand extends Command {
     private Model model;
-    private String tpye;
+    private String type;
 
     public RunCommand(Model model, String type) {
         super(model);

@@ -1,18 +1,26 @@
 package CALab;
 
 import mvc.*;
+import stoplight.Stoplight;
 
 public class GridFactory implements AppFactory {
     //public Model makeModel() { return new Grid(); } //different per implementation
+
+    @Override
+    public Model makeModel() {
+        return new Grid() {
+            @Override
+            public Cell makeCell() {
+                return null;
+            }
+        };
+    }
 
     public View makeView(Model m) {
         return new GridView((Grid)m);
     }
 
-    @Override
-    public ControlPanel makeControlPanel(Model m) {
-        return new ControlPanel();
-    }
+
 
     public String[] getEditCommands() { return new String[] {"Run1", "Run50", "Populate", "Clear"}; }
 

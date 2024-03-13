@@ -3,14 +3,39 @@ package CALab;
 import mvc.AppFactory;
 import mvc.AppPanel;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
 
 public class GridPanel extends AppPanel {
-    private JButton change;
-    public GridPanel(GridFactory gridfactory) {
+    private JButton run1;
+    private JButton run50;
+    private JButton populate;
+    private JButton clear;
+    public GridPanel(AppFactory gridfactory) {
         super(gridfactory);
-        change = new JButton("Change");
-        change.addActionListener(this);
-        controlPanel.add(change);
+        controlPanel.setLayout(new GridLayout(2,2));
+
+        run1 = new JButton("Run1");
+        run1.addActionListener(this);
+        controlPanel.add(createButtonPanel(run1));
+        run50 = new JButton("Run50");
+        run50.addActionListener(this);
+        controlPanel.add(createButtonPanel(run50));
+        populate = new JButton("Populate");
+        populate.addActionListener(this);
+        controlPanel.add(createButtonPanel(populate));
+        clear = new JButton("Clear");
+        clear.addActionListener(this);
+        controlPanel.add(createButtonPanel(clear));
+    }
+
+    private JPanel createButtonPanel(JButton button) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0)); // Center-align buttons
+        panel.add(button);
+        return panel;
     }
 
     public void actionPerformed(ActionEvent e) {

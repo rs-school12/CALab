@@ -10,10 +10,6 @@ public class StoplightFactory implements AppFactory {
         return new StoplightView((Stoplight)m);
     }
 
-    @Override
-    public ControlPanel makeControlPanel(Model m) {
-        return new ControlPanel();
-    }
 
     public String[] getEditCommands() { return new String[] {"Change"}; }
 
