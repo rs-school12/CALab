@@ -20,7 +20,7 @@ public class Agent extends Cell {
     public void observe() {
         ambience = 0;
         for (Cell c:neighbors){
-            if (c.getStatus() == 0){
+            if (c.getStatus() == 1){
                 ambience++;
             }
         }
@@ -33,11 +33,10 @@ public class Agent extends Cell {
 
     @Override
     public void update() {
-        if (Society.death.contains(ambience) && this.getStatus()==0){
-            this.nextState();
-        }else if (Society.rebirth.contains(ambience) && this.getStatus()==1){
+        if (Society.death.contains(ambience) && status==1 || Society.rebirth.contains(ambience) && status==0){
             this.nextState();
         }
+        notifySubscribers();
     }
 
     @Override
@@ -65,11 +64,16 @@ public class Agent extends Cell {
 
     @Override
     public Color getColor() {
-        return status==0?Color.green:Color.red;
+        return status==0?Color.red:Color.green;
     }
 
     @Override
     public int getStatus() {
         return status;
+    }
+
+    @Override
+    public int getLabel() {
+        return ambience;
     }
 }

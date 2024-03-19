@@ -32,6 +32,7 @@ public abstract class Grid extends Model {
         for (int i = 0; i < dim; i++){
             for (int j = 0; j < dim; j++){
                 cells[i][j] = makeCell();
+                cells[i][j].setLocation(i,j);
             }
         }
 
@@ -39,13 +40,10 @@ public abstract class Grid extends Model {
     }
 
     private void SetCellNeighbors(){
-        System.out.println(cells.length);
-        System.out.println(cells[0].length);
         for (int i = 0; i < dim; i++){
             for (int j = 0; j < dim; j++){
                 for (int x = i - 1; x <= i + 1; x++) {
                     for (int y = j - 1; y <= j + 1; y++) {
-                        System.out.println(i + " " + j + " " + x + " " + y);
                         if (i == x && j == y)
                             continue;
 
@@ -64,6 +62,12 @@ public abstract class Grid extends Model {
                         cells[i][j].neighbors.add(cells[X][Y]);
                     }
                 }
+
+//                System.out.println("cell: " + cells[i][j].row + " " + cells[i][j].col);
+//                for (Cell c :cells[i][j].neighbors){
+//                    System.out.println(c.row + " " + c.col);
+//                }
+
             }
         }
     }
@@ -99,6 +103,7 @@ public abstract class Grid extends Model {
             update();
             time++;
         }
+        changed();
         notifySubscribers();
     }
 
@@ -108,6 +113,7 @@ public abstract class Grid extends Model {
                 c.reset(random);
             }
         }
+        changed();
     }
 
     public int getDim(){

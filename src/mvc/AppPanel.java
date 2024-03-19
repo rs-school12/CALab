@@ -61,7 +61,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                     break;
                 case "Open":
                     System.out.println("Open");
-                    setModel(Utilities.open(model, view));
+                    setModel(Utilities.open(model));
                     break;
                 case "Quit":
                     System.out.println("Quit");

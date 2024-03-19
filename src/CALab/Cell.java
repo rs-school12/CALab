@@ -66,8 +66,15 @@ public abstract class Cell extends Publisher implements Serializable {
     public abstract void nextState();
     public abstract int getStatus();
 
+    public abstract int getLabel();
+
     public void setMyGrid(Grid g){
         this.myGrid = g;
+    }
+
+    public void setLocation(int row, int col){
+        this.row = row;
+        this.col = col;
     }
 
 }

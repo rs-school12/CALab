@@ -25,6 +25,7 @@ public class GridView extends View {
                 CellView cellView = new CellView(model.cells[i][j]);
                 cellViews[i][j] = cellView;
                 this.add(cellView);
+                cellView.update();
             }
         }
     }
