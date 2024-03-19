@@ -42,24 +42,38 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         frame.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { 
         String cmd = e.getActionCommand();
         try {
             switch (cmd){
                 case "New":
-                    factory.makeEditCommand(model,"Change",this).execute();
+                    System.out.println("New");
+                    Utilities.saveChanges(model);
+                    setModel(factory.makeModel());
                     break;
                 case "Save":
+                    System.out.println("Save");
+                    if (model.getFileName() == null) {
+                        Utilities.save(model, true);
+                    } else {
+                        Utilities.save(model, false);
+                    }
                     break;
                 case "Open":
+                    System.out.println("Open");
+                    setModel(Utilities.open(model));
                     break;
                 case "Quit":
+                    System.out.println("Quit");
+                    frame.dispose();
                     break;
                 case "About":
-                    factory.about();
+                    System.out.println("About");
+                    JOptionPane.showMessageDialog(null, factory.about(), "Help", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 case "Help":
-                    factory.getHelp();
+                    System.out.println("Help");
+                    JOptionPane.showMessageDialog(null, factory.getHelp(), "Help", JOptionPane.INFORMATION_MESSAGE);
                     break;
             }
         } catch (Exception ex) {
@@ -68,7 +82,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     }
 
 
-    public void update() {
+    public void update() { //override in customization
 
     }
 
@@ -84,17 +98,4 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         model.changed();
     }
 
-    public class FilePopup {
-        static public String popup() {
-            JTextField fileNameField = new JTextField();
-            Object[] message = {
-                    "Enter program file name (ex. tri):", fileNameField};
-            int option = JOptionPane.showConfirmDialog(null, message, "File Name Input", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-
-                return fileNameField.getText();
-            }
-            return "";
-        }
-    }
 }

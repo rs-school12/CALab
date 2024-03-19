@@ -19,6 +19,7 @@ public class StoplightPanel extends AppPanel {
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
+        super.actionPerformed(e);
         try {
             switch (cmd){
                 case "Change":
@@ -28,6 +29,7 @@ public class StoplightPanel extends AppPanel {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+
     }
 
     public static void main(String[] args) {
