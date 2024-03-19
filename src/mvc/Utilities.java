@@ -100,13 +100,14 @@ public class Utilities {
     }
 
     // open model
-    public static Model open(Model model) {
+    public static Model open(Model model, View view) {
         saveChanges(model);
         String fName = getFileName(model.getFileName(), true);
         Model newModel = null;
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
             newModel = (Model)is.readObject();
+            view.setModel(newModel);
             is.close();
         } catch (Exception err) {
             Utilities.error(err);

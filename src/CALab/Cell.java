@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Cell extends Publisher implements Serializable {
+
     protected int row;
     protected int col;
 
-    protected Grid myGrid;
+    protected transient Grid myGrid;
 
-    protected List<Cell> neighbors = new ArrayList<>();
+    public transient List<Cell> neighbors = new ArrayList<>();
 
     protected Cell partner = null;
 
@@ -64,4 +65,9 @@ public abstract class Cell extends Publisher implements Serializable {
 
     public abstract void nextState();
     public abstract int getStatus();
+
+    public void setMyGrid(Grid g){
+        this.myGrid = g;
+    }
+
 }
