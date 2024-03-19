@@ -1,15 +1,11 @@
 package CALab;
 
 import mvc.*;
-import stoplight.Stoplight;
 
-public class GridFactory implements AppFactory {
-    //public Model makeModel() { return new Grid(); } //different per implementation
+public abstract class GridFactory implements AppFactory {
 
-    @Override
-    public Grid makeModel() {
-        return null;
-    }
+    public Grid makeModel(Grid grid) {  // override in grid specialization
+        return grid; }
 
     public View makeView(Model m) {
         return new GridView((Grid)m);

@@ -23,9 +23,6 @@ public class CellView extends JButton implements ActionListener, Subscriber {
         // call update needed?
     }
 
-    // called by notifySubscribers and GridView.update
-
-
     @Override
     public void update() {
         setBackground(myCell.getColor());

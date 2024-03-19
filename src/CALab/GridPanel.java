@@ -2,6 +2,8 @@ package CALab;
 
 import mvc.AppFactory;
 import mvc.AppPanel;
+import stoplight.StoplightFactory;
+import stoplight.StoplightPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,5 +54,7 @@ public class GridPanel extends AppPanel {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+        super.actionPerformed(e);
     }
+
 }
