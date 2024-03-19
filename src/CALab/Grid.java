@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class Grid extends Model {
 
-    private static int time = 0;
+    protected static int time = 0;
     private int dim = 20;
 
     protected Cell[][] cells;
@@ -97,11 +97,13 @@ public abstract class Grid extends Model {
     }
 
     public void updateLoop(int cycles){
-        for (int i = 0; i < cycles; i++){
-            observe();
+        observe();
+        for(int cycle = 0; cycle < cycles; cycle++) {
             interact();
             update();
+            observe();
             time++;
+            System.out.println("time = " + time);
         }
         changed();
         notifySubscribers();
@@ -113,6 +115,8 @@ public abstract class Grid extends Model {
                 c.reset(random);
             }
         }
+        time = 0;
+        observe();
         changed();
     }
 

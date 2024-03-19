@@ -24,6 +24,7 @@ public class Agent extends Cell {
                 ambience++;
             }
         }
+        notifySubscribers();
     }
 
     @Override
@@ -36,7 +37,6 @@ public class Agent extends Cell {
         if (Society.death.contains(ambience) && status==1 || Society.rebirth.contains(ambience) && status==0){
             this.nextState();
         }
-        notifySubscribers();
     }
 
     @Override
@@ -44,8 +44,10 @@ public class Agent extends Cell {
         if (!random){
             status = 0;
         }else {
+            /*
             Random r = new Random();
-            status = r.nextInt(2);
+            status = r.nextInt(2);*/
+            status = 1;
         }
         myGrid.changed();
         notifySubscribers();
