@@ -13,15 +13,15 @@ public class GridView extends View {
     public GridView(Grid model) {
         super(model);
 
-        cellViews = new CellView[model.getDim()][model.getDim()];
+        cellViews = new CellView[Grid.dim][Grid.dim];
         /*
         Cell cell = new CellView(((Grid)model).getCell(row, col)
         cellViews[row][col] = cell
         set cell.row and cell.col here
         */
-        this.setLayout(new GridLayout(model.getDim(),model.getDim()));
-        for (int i = 0; i < model.getDim(); i++){
-            for (int j = 0; j < model.getDim(); j++){
+        this.setLayout(new GridLayout(Grid.dim,Grid.dim));
+        for (int i = 0; i < Grid.dim; i++){
+            for (int j = 0; j < Grid.dim; j++){
                 CellView cellView = new CellView(model.cells[i][j]);
                 cellViews[i][j] = cellView;
                 this.add(cellView);

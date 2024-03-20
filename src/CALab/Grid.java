@@ -10,15 +10,15 @@ import java.util.List;
 
 public abstract class Grid extends Model {
 
-    protected static int time = 0;
-    private int dim = 20;
+    public static int time = 0;
+    public static int dim = 20;
 
     protected Cell[][] cells;
 
     public abstract Cell makeCell();
 
     public Grid(int dim){
-        this.dim = dim;
+        Grid.dim = dim;
         cells = new Cell[dim][dim];
         populate();
         repopulate(true);
@@ -118,10 +118,6 @@ public abstract class Grid extends Model {
         time = 0;
         observe();
         changed();
-    }
-
-    public int getDim(){
-        return dim;
     }
 
     public Cell[][] getCells() {

@@ -35,14 +35,14 @@ public class Society extends Grid {
     @Override
     public void repopulate(boolean random) {
         if (random) {
-            int aliveCount = (int) Math.round((percentAlive / 100.0) * getDim() * getDim());
+            int aliveCount = (int) Math.round((percentAlive / 100.0) * Grid.dim * Grid.dim);
             List<Integer> selectedNumbers = new ArrayList<>();
-            for (int i = 0; i < getDim()*getDim(); i++){
+            for (int i = 0; i < Grid.dim*Grid.dim; i++){
                 selectedNumbers.add(i);
             }
             Collections.shuffle(selectedNumbers);
             for (int i = 0; i < selectedNumbers.size(); i++){
-                cells[selectedNumbers.get(i) / getDim()][selectedNumbers.get(i) % getDim()].reset(i < aliveCount);
+                cells[selectedNumbers.get(i) / Grid.dim][selectedNumbers.get(i) % Grid.dim].reset(i < aliveCount);
             }
 
         }else {
