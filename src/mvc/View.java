@@ -1,7 +1,7 @@
 package mvc;
 
 import javax.swing.*;
-import java.awt.*;
+//import java.awt.*;
 
 public class View extends JPanel implements Subscriber {
 

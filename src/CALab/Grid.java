@@ -4,9 +4,7 @@ import mvc.Model;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Grid extends Model {
 
@@ -62,12 +60,6 @@ public abstract class Grid extends Model {
                         cells[i][j].neighbors.add(cells[X][Y]);
                     }
                 }
-
-//                System.out.println("cell: " + cells[i][j].row + " " + cells[i][j].col);
-//                for (Cell c :cells[i][j].neighbors){
-//                    System.out.println(c.row + " " + c.col);
-//                }
-
             }
         }
     }

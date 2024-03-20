@@ -1,10 +1,8 @@
 package life;
 
 import CALab.Cell;
-import CALab.Grid;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Agent extends Cell {
 
@@ -44,9 +42,6 @@ public class Agent extends Cell {
         if (!random){
             status = 0;
         }else {
-            /*
-            Random r = new Random();
-            status = r.nextInt(2);*/
             status = 1;
         }
         myGrid.changed();

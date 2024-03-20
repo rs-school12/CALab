@@ -14,10 +14,6 @@ public class RunCommand extends Command {
     }
 
     public void execute() {
-        //if type.equals("Run1")...
-        //else ...
-        /*Grid grid = (Grid) model;
-        grid.execute();*/
         if (type == "Run50"){
             ((Grid) model).updateLoop(50);
         }else{

@@ -1,6 +1,6 @@
 package mvc;
 
-import java.awt.event.*;
+//import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Random;
@@ -129,7 +129,7 @@ public class Utilities {
     public static Random rng = new Random(System.currentTimeMillis());
 
     public static void log(String msg) {
-        System.out.println(msg); // for now
+        System.out.println(msg);
     }
 
     private static int nextID = 100;

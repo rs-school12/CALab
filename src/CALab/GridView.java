@@ -3,7 +3,6 @@ package CALab;
 import mvc.Model;
 import mvc.View;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class GridView extends View {
@@ -14,11 +13,6 @@ public class GridView extends View {
         super(model);
 
         cellViews = new CellView[Grid.dim][Grid.dim];
-        /*
-        Cell cell = new CellView(((Grid)model).getCell(row, col)
-        cellViews[row][col] = cell
-        set cell.row and cell.col here
-        */
         this.setLayout(new GridLayout(Grid.dim,Grid.dim));
         for (int i = 0; i < Grid.dim; i++){
             for (int j = 0; j < Grid.dim; j++){

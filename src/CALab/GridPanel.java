@@ -1,9 +1,6 @@
 package CALab;
 
-import mvc.AppFactory;
 import mvc.AppPanel;
-import stoplight.StoplightFactory;
-import stoplight.StoplightPanel;
 
 import javax.swing.*;
 import java.awt.*;

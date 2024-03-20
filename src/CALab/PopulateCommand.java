@@ -11,8 +11,6 @@ public class PopulateCommand extends Command {
     }
 
     public void execute() {
-        /*Grid grid = (Grid) model;
-        grid.execute();*/
         ((Grid) model).repopulate(true);
     }
 }

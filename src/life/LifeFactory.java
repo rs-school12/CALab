@@ -1,6 +1,6 @@
 package life;
 
-import CALab.Cell;
+
 import CALab.Grid;
 import CALab.GridFactory;
 
